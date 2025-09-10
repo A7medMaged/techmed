@@ -5,6 +5,7 @@ import 'package:techmed/features/auth/data/repos/login_repo.dart';
 import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
 import 'package:techmed/features/auth/data/repos/register_repo.dart';
 import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.dart';
+import 'package:techmed/features/translation/logic/cubit/local_cubit.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -35,4 +36,6 @@ void setupDependencyInjection() {
   getIt.registerFactory(
     () => LoginCubit(getIt<LoginRepo>()),
   );
+
+  getIt.registerFactory<LocaleCubit>(() => LocaleCubit());
 }

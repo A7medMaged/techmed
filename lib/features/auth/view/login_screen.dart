@@ -10,9 +10,11 @@ import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
+import 'package:techmed/core/widgets/language_switcher.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 import 'package:techmed/features/auth/data/models/login_models/login_request.dart';
 import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
+import 'package:techmed/generated/l10n.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,18 +42,20 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const HeightSpace(32),
+                const LanguageSwitcher(),
                 Text(
-                  'Welcome back to TechMed',
+                  S.of(context).wlecome_back_to_TecMed,
                   style: AppStyles.primaryHeadLinesStyle,
                 ),
                 const HeightSpace(8),
                 Text(
-                  'Please fill the input below here',
+                  S.of(context).please_fill_the_input_below_here,
                   style: AppStyles.subtitlesStyles,
                 ),
                 const HeightSpace(24),
                 Text(
-                  'E-mail',
+                  S.of(context).email,
                   style: AppStyles.subtitlesStyles,
                 ),
                 const HeightSpace(8),
@@ -61,11 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: AppColors.primaryColor,
                   ),
                   controller: emailController,
-                  hintText: 'Enter your email',
+                  hintText: S.of(context).enter_your_email,
                   width: double.infinity,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return S.of(context).please_enter_your_email;
                     }
                     return null;
                   },
@@ -93,11 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   controller: passwordController,
-                  hintText: 'Enter your password',
+                  hintText: S.of(context).enter_your_password,
                   width: double.infinity,
                   validator: (value) {
                     if (value == null || value.isEmpty && value.length < 6) {
-                      return 'Please enter your password';
+                      return S.of(context).please_enter_your_password;
                     }
                     return null;
                   },
@@ -133,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return const CircularProgressIndicator();
                           }
                           return PrimayButtonWidget(
-                            buttonText: 'Login',
+                            buttonText: S.of(context).login,
                             buttonColor: AppColors.primaryColor,
                             onPress: () {
                               if (formKey.currentState!.validate()) {
@@ -155,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           context,
                         ).pushReplacement(AppRoutes.registerScreen),
                         child: Text(
-                          'Don\'t have an account? Register',
+                          S.of(context).dontHaveAccount,
                           style: AppStyles.subtitlesStyles,
                         ),
                       ),

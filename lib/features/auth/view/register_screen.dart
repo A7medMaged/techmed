@@ -11,6 +11,7 @@ import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 import 'package:techmed/features/auth/data/models/register_models/register_request.dart';
 import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.dart';
+import 'package:techmed/generated/l10n.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -55,17 +56,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Create your account',
+                    S.of(context).create_your_account,
                     style: AppStyles.primaryHeadLinesStyle,
                   ),
                   const HeightSpace(8),
                   Text(
-                    'Please fill the input below here',
+                    S.of(context).please_fill_the_input_below_here,
                     style: AppStyles.subtitlesStyles,
                   ),
                   const HeightSpace(24),
                   Text(
-                    'Name',
+                    S.of(context).name,
                     style: AppStyles.subtitlesStyles,
                   ),
                   const HeightSpace(8),
@@ -75,11 +76,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: AppColors.primaryColor,
                     ),
                     controller: fullNameController,
-                    hintText: 'Enter your name',
+                    hintText: S.of(context).enter_your_name,
                     width: double.infinity,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your name';
+                        return S.of(context).please_enter_your_name;
                       }
                       return null;
                     },
@@ -96,11 +97,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: AppColors.primaryColor,
                     ),
                     controller: emailController,
-                    hintText: 'Enter your email',
+                    hintText: S.of(context).enter_your_email,
                     width: double.infinity,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return S.of(context).please_enter_your_email;
                       }
                       return null;
                     },
@@ -117,18 +118,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: AppColors.primaryColor,
                     ),
                     controller: phoneNumberController,
-                    hintText: 'Enter your phone number',
+                    hintText: S.of(context).enter_your_phone,
                     width: double.infinity,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number';
+                        return S.of(context).please_enter_your_phone;
                       }
                       return null;
                     },
                   ),
                   const HeightSpace(24),
                   Text(
-                    'Password',
+                    S.of(context).password,
                     style: AppStyles.subtitlesStyles,
                   ),
                   const HeightSpace(8),
@@ -149,11 +150,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     controller: passwordController,
-                    hintText: 'Enter your password',
+                    hintText: S.of(context).enter_your_password,
                     width: double.infinity,
                     validator: (value) {
                       if (value == null || value.isEmpty && value.length < 6) {
-                        return 'Please enter your password';
+                        return S.of(context).please_enter_your_password;
                       }
                       return null;
                     },
@@ -170,11 +171,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: AppColors.primaryColor,
                     ),
                     controller: nationalIdController,
-                    hintText: 'Enter your national ID',
+                    hintText: S.of(context).enter_your_national_id,
                     width: double.infinity,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your national ID';
+                        return S.of(context).please_enter_your_national_id;
                       }
                       return null;
                     },
@@ -183,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text('Gender', style: AppStyles.subtitlesStyles),
                   const HeightSpace(8),
                   DropdownButtonFormField<String>(
-                    dropdownColor: AppColors.blackColor,
+                    dropdownColor: Colors.black,
                     icon: const Icon(Icons.arrow_drop_down_circle_outlined),
                     decoration: InputDecoration(
                       fillColor: AppColors.blackColor,
@@ -195,12 +196,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return S.of(context).please_enter_your_gender;
+                      }
+                      return null;
+                    },
                     hint: Text(
-                      'Select Gender',
+                      S.of(context).select_gender,
                       style: AppStyles.subtitlesStyles,
                     ),
                     initialValue: _selectedGender,
-                    items: ['Male', 'Female']
+                    items: [S.of(context).male, S.of(context).female]
                         .map(
                           (value) => DropdownMenuItem(
                             value: value,
@@ -239,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return const CircularProgressIndicator();
                             }
                             return PrimayButtonWidget(
-                              buttonText: 'Register',
+                              buttonText: S.of(context).register,
                               buttonColor: AppColors.primaryColor,
                               onPress: () {
                                 if (formKey.currentState!.validate()) {
@@ -266,7 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             context,
                           ).pushReplacement(AppRoutes.loginScreen),
                           child: Text(
-                            'Already have an account? Login',
+                            S.of(context).alreadyHaveAccount,
                             style: AppStyles.subtitlesStyles,
                           ),
                         ),
