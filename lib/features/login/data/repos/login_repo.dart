@@ -3,22 +3,23 @@ import 'package:dio/dio.dart';
 import 'package:techmed/core/errors/failure.dart';
 import 'package:techmed/core/networking/api_endpoints.dart';
 import 'package:techmed/core/networking/dio_helper.dart';
-import 'package:techmed/features/login/data/models/login_model.dart';
+import 'package:techmed/features/login/data/models/login_request.dart';
+import 'package:techmed/features/login/data/models/login_response.dart';
 
 class LoginRepo {
   final DioHelper _dioHelper;
   LoginRepo(this._dioHelper);
 
-  Future<Either<String, LoginModel>> login(
-    LoginModel loginModel,
+  Future<Either<String, LoginResponse>> login(
+    LoginRequest request,
   ) async {
     try {
       final response = await _dioHelper.postRequest(
         endPoint: ApiEndpoints.login,
-        data: loginModel.toJson(),
+        data: request.toJson(),
       );
 
-      return Right(LoginModel.fromJson(response.data));
+      return right(LoginResponse.fromJson(response.data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e) as String);

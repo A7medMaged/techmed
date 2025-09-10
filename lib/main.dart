@@ -3,7 +3,7 @@ import 'package:techmed/core/routing/router_generation_config.dart';
 import 'package:techmed/core/styling/theme_data.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
 
-void main() {
+void main() async {
   setupDependencyInjection();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());

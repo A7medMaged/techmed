@@ -43,11 +43,10 @@ class ServerFailure extends Failures {
   ) {
     if (statesCode >= 400 && statesCode <= 410 && statesCode != 404) {
       return ServerFailure(
-        error:
-            errorResponseBody["errors"] != null
-                ? parseErrorResponse(errorResponseBody as Map<String, dynamic>)
-                : errorResponseBody["message"] ??
-                    'There was an error , Please try again',
+        error: errorResponseBody["errors"] != null
+            ? parseErrorResponse(errorResponseBody as Map<String, dynamic>)
+            : errorResponseBody["message"] ??
+                  'There was an error , Please try again',
       );
     } else if (statesCode == 404) {
       return ServerFailure(
@@ -59,10 +58,10 @@ class ServerFailure extends Failures {
       return ServerFailure(
         error:
             parseErrorResponse(
-                  errorResponseBody as Map<String, dynamic>,
-                ).isEmpty
-                ? 'There was an error , Please try again'
-                : parseErrorResponse(errorResponseBody),
+              errorResponseBody as Map<String, dynamic>,
+            ).isEmpty
+            ? 'There was an error , Please try again'
+            : parseErrorResponse(errorResponseBody),
       );
     }
   }

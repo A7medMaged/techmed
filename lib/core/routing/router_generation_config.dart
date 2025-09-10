@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
+import 'package:techmed/features/login/logic/cubit/login_cubit.dart';
 import 'package:techmed/features/login/view/login_screen.dart';
 import 'package:techmed/features/main/view/main_screen.dart';
 import 'package:techmed/features/register/logic/cubit/register_cubit.dart';
@@ -28,7 +29,10 @@ class RouterGenerationConfig {
       GoRoute(
         name: 'loginScreen',
         path: AppRoutes.loginScreen,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<LoginCubit>(),
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         name: 'mainScreen',

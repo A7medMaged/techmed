@@ -9,6 +9,7 @@ import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
+import 'package:techmed/features/login/data/models/login_request.dart';
 import 'package:techmed/features/login/logic/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -124,12 +125,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         builder: (context, state) {
+                          if (state is LoginLoading) {
+                            return const CircularProgressIndicator();
+                          }
                           return PrimayButtonWidget(
                             buttonText: 'Login',
                             buttonColor: AppColors.primaryColor,
                             onPress: () {
                               if (formKey.currentState!.validate()) {
-                                // Perform login action
+                                final loginRequest = LoginRequest(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                                BlocProvider.of<LoginCubit>(context).login(
+                                  loginRequest,
+                                );
                               }
                             },
                           );
