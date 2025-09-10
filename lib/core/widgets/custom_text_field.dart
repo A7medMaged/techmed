@@ -4,6 +4,7 @@ import 'package:techmed/core/styling/app_colors.dart';
 class CustomTextField extends StatelessWidget {
   final String? hintText;
   final Widget? suffixIcon;
+  final Widget? preffixIcon;
   final double? width;
   final bool? isPassword;
   final TextEditingController? controller;
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.hintText,
     this.suffixIcon,
+    this.preffixIcon,
     this.width,
     this.isPassword,
     this.controller,
@@ -57,6 +59,7 @@ class CustomTextField extends StatelessWidget {
           filled: true,
           fillColor: const Color(0xffF7F8F9),
           suffixIcon: suffixIcon,
+          prefixIcon: preffixIcon,
         ),
       ),
     );

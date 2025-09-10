@@ -38,7 +38,10 @@ class DioHelper {
     Map<String, dynamic>? data,
   }) async {
     try {
-      final Response response = await dio!.post(endPoint, data: data);
+      final Response response = await dio!.post(
+        endPoint,
+        data: data,
+      );
 
       return response;
     } on DioException catch (e) {

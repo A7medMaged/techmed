@@ -17,4 +17,22 @@ class AppThemes {
       disabledColor: AppColors.secondaryColor,
     ),
   );
+
+  static final darkTheme = ThemeData(
+    primaryColor: AppColors.primaryColor,
+    scaffoldBackgroundColor: Colors.black,
+    fontFamily: AppFonts.mainFontName,
+    textTheme: TextTheme(
+      titleLarge: AppStyles.primaryHeadLinesStyle.copyWith(
+        color: Colors.white,
+      ),
+      titleMedium: AppStyles.subtitlesStyles.copyWith(
+        color: Colors.white70,
+      ),
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: AppColors.primaryColor,
+      disabledColor: AppColors.secondaryColor,
+    ),
+  );
 }
