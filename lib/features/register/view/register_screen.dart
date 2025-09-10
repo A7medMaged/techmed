@@ -8,7 +8,6 @@ import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
-import 'package:techmed/core/widgets/loading.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 import 'package:techmed/features/register/data/models/register_model.dart';
 import 'package:techmed/features/register/logic/cubit/register_cubit.dart';
@@ -254,7 +253,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   BlocProvider.of<RegisterCubit>(
                                     context,
                                   ).register(registerModel);
-                                  context.pop();
                                 }
                               },
                             );

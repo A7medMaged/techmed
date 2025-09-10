@@ -1,52 +1,83 @@
 import 'package:dio/dio.dart';
 
-abstract class Failure {
-  final String message;
+abstract class Failures {
+  final String error;
 
-  Failure(this.message);
+  const Failures({required this.error});
 }
 
-class ServerFailure extends Failure {
-  ServerFailure(super.message);
+class ServerFailure extends Failures {
+  ServerFailure({required super.error});
 
-  factory ServerFailure.fromDioError(DioException e) {
-    switch (e.type) {
-      case DioExceptionType.connectionTimeout:
-        return ServerFailure('Connection Timeout with ApiServer');
-      case DioExceptionType.sendTimeout:
-        return ServerFailure('Send Timeout with ApiServer');
-      case DioExceptionType.receiveTimeout:
-        return ServerFailure('Receive Timeout with ApiServer');
+  factory ServerFailure.fromDioException(DioException error) {
+    String errorMessage = 'there was an error';
+    switch (error.type) {
       case DioExceptionType.badCertificate:
-        return ServerFailure('Bad Certificate with ApiServer');
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
-          e.response!.statusCode!,
-          e.response!.data,
+          error.response!.statusCode!,
+          error.response!.data,
         );
+      case DioExceptionType.receiveTimeout:
+        errorMessage = 'server error';
+        break;
       case DioExceptionType.cancel:
-        return ServerFailure('Request to ApiServer was cancelled');
       case DioExceptionType.connectionError:
-        return ServerFailure('No Internet connection');
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.connectionTimeout:
+        errorMessage = 'Please check the internet and send again';
+        break;
       case DioExceptionType.unknown:
-        return ServerFailure('Opps there was an error, Please try again');
+        errorMessage = 'unKnown error';
+        break;
+      // ignore: unreachable_switch_default
+      default:
+        return ServerFailure(error: 'There was an error , Please try again');
     }
+    return ServerFailure(error: errorMessage);
   }
 
-  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    switch (statusCode) {
-      case 400:
-        return ServerFailure('Bad Request');
-      case 401:
-        return ServerFailure('Unauthorized');
-      case 403:
-        return ServerFailure('Forbidden');
-      case 404:
-        return ServerFailure('Not Found');
-      case 500:
-        return ServerFailure('Internal Server Error');
-      default:
-        return ServerFailure('Unknown Error: $response');
+  factory ServerFailure.fromResponse(
+    int statesCode,
+    dynamic errorResponseBody,
+  ) {
+    if (statesCode >= 400 && statesCode <= 410 && statesCode != 404) {
+      return ServerFailure(
+        error:
+            errorResponseBody["errors"] != null
+                ? parseErrorResponse(errorResponseBody as Map<String, dynamic>)
+                : errorResponseBody["message"] ??
+                    'There was an error , Please try again',
+      );
+    } else if (statesCode == 404) {
+      return ServerFailure(
+        error: errorResponseBody['message'] ?? 'Not found, Please try again',
+      );
+    } else if (statesCode == 500) {
+      return ServerFailure(error: 'Server error');
+    } else {
+      return ServerFailure(
+        error:
+            parseErrorResponse(
+                  errorResponseBody as Map<String, dynamic>,
+                ).isEmpty
+                ? 'There was an error , Please try again'
+                : parseErrorResponse(errorResponseBody),
+      );
     }
+  }
+}
+
+String parseErrorResponse(Map<String, dynamic> errorResponse) {
+  final errors = errorResponse['errors'] as Map<String, dynamic>;
+  final errorMessages = errors.values.expand((messages) => messages).join('\n');
+  return errorMessages;
+}
+
+class CacheFailure extends Failures {
+  CacheFailure({required super.error});
+
+  factory CacheFailure.fromException(Exception error) {
+    return CacheFailure(error: error.toString());
   }
 }

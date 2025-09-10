@@ -35,7 +35,7 @@ class DioHelper {
 
       return response;
     } on DioException catch (e) {
-      throw ServerFailure.fromDioError(e);
+      throw ServerFailure.fromDioException(e);
     }
   }
 
@@ -51,7 +51,7 @@ class DioHelper {
 
       return response;
     } on DioException catch (e) {
-      throw ServerFailure.fromDioError(e);
+      throw ServerFailure.fromDioException(e);
     }
   }
 }
