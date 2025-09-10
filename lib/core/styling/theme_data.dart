@@ -21,6 +21,11 @@ class AppThemes {
   static final darkTheme = ThemeData(
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: Colors.black,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
+      titleTextStyle: AppStyles.subtitlesStyles,
+    ),
     fontFamily: AppFonts.mainFontName,
     textTheme: TextTheme(
       titleLarge: AppStyles.primaryHeadLinesStyle.copyWith(

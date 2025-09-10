@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/styling/app_assets.dart';
+import 'package:techmed/core/utils/dependency_injection.dart';
+import 'package:techmed/core/utils/storage_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,8 +35,15 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> waitAnimationAndNavigate() async {
     await Future.delayed(const Duration(seconds: 3));
-    // ignore: use_build_context_synchronously
-    GoRouter.of(context).pushReplacement(AppRoutes.loginScreen);
+    getIt<StorageHelper>().getUserToken().then((token) {
+      // ignore: avoid_dynamic_calls
+      if (token != null && token.isNotEmpty && mounted) {
+        context.pushReplacement(AppRoutes.mainScreen);
+      } else {
+        // ignore: use_build_context_synchronously
+        context.pushReplacement(AppRoutes.loginScreen);
+      }
+    });
   }
 
   @override
