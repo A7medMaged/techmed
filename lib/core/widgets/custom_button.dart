@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 
-
 class PrimayButtonWidget extends StatelessWidget {
   final String? buttonText;
   final Color? buttonColor;

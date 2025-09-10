@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_fonts.dart';
 
-
 class AppStyles {
   static TextStyle primaryHeadLinesStyle = TextStyle(
     fontFamily: AppFonts.mainFontName,
