@@ -9,8 +9,8 @@ import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
-import 'package:techmed/features/register/data/models/register_request.dart';
-import 'package:techmed/features/register/logic/cubit/register_cubit.dart';
+import 'package:techmed/features/auth/data/models/register_models/register_request.dart';
+import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

@@ -11,8 +11,8 @@ import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
-import 'package:techmed/features/login/data/models/login_request.dart';
-import 'package:techmed/features/login/logic/cubit/login_cubit.dart';
+import 'package:techmed/features/auth/data/models/login_models/login_request.dart';
+import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

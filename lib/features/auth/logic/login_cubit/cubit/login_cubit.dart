@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:techmed/features/login/data/models/login_request.dart';
-import 'package:techmed/features/login/data/models/login_response.dart';
-import 'package:techmed/features/login/data/repos/login_repo.dart';
+import 'package:techmed/features/auth/data/models/login_models/login_request.dart';
+import 'package:techmed/features/auth/data/models/login_models/login_response.dart';
+import 'package:techmed/features/auth/data/repos/login_repo.dart';
 
 part 'login_state.dart';
 

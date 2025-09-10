@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:techmed/features/register/data/models/register_request.dart';
-import 'package:techmed/features/register/data/models/register_response.dart';
-import 'package:techmed/features/register/data/repos/register_repo.dart';
+import 'package:techmed/features/auth/data/models/register_models/register_request.dart';
+import 'package:techmed/features/auth/data/models/register_models/register_response.dart';
+import 'package:techmed/features/auth/data/repos/register_repo.dart';
 
 part 'register_state.dart';
 
