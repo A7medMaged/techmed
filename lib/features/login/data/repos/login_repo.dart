@@ -10,7 +10,7 @@ class LoginRepo {
   final DioHelper _dioHelper;
   LoginRepo(this._dioHelper);
 
-  Future<Either<String, LoginResponse>> login(
+  Future<Either<ServerFailure, LoginResponse>> login(
     LoginRequest request,
   ) async {
     try {
@@ -22,9 +22,9 @@ class LoginRepo {
       return right(LoginResponse.fromJson(response.data));
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e) as String);
+        return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(error: e.toString()) as String);
+        return left(ServerFailure(error: e.toString()));
       }
     }
   }

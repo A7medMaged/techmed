@@ -10,7 +10,7 @@ class RegisterRepo {
   final DioHelper _dioHelper;
   RegisterRepo(this._dioHelper);
 
-  Future<Either<String, RegisterResponse>> register(
+  Future<Either<ServerFailure, RegisterResponse>> register(
     RegisterRequest request,
   ) async {
     try {
@@ -21,9 +21,9 @@ class RegisterRepo {
       return Right(RegisterResponse.fromJson(response.data));
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e) as String);
+        return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(error: e.toString()) as String);
+        return left(ServerFailure(error: e.toString()));
       }
     }
   }

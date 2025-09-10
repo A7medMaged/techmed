@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:techmed/features/login/data/models/login_request.dart';
+import 'package:techmed/features/login/data/models/login_response.dart';
 import 'package:techmed/features/login/data/repos/login_repo.dart';
 
 part 'login_state.dart';
@@ -15,8 +16,8 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
     result.fold(
-      (l) => emit(LoginFailure(l)),
-      (r) => emit(LoginSuccess('Login Successful')),
+      (l) => emit(LoginFailure(l.error)),
+      (r) => emit(LoginSuccess(r)),
     );
   }
 }

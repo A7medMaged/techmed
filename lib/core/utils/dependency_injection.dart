@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:techmed/core/networking/dio_helper.dart';
+import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/features/login/data/repos/login_repo.dart';
 import 'package:techmed/features/login/logic/cubit/login_cubit.dart';
 import 'package:techmed/features/register/data/repos/register_repo.dart';
@@ -9,9 +10,13 @@ GetIt getIt = GetIt.instance;
 
 void setupDependencyInjection() {
   final DioHelper diohelper = DioHelper();
+  final StorageHelper storageHelper = StorageHelper();
 
   //  Dio
   getIt.registerLazySingleton<DioHelper>(() => diohelper);
+
+  // Storage
+  getIt.registerLazySingleton<StorageHelper>(() => storageHelper);
 
   // Reops
   getIt.registerLazySingleton(

@@ -226,10 +226,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             } else if (state is RegisterSuccess) {
                               showSnackBar(
                                 context,
-                                state.message,
+                                state.response.message!,
                                 AnimatedSnackBarType.success,
                               );
-                              context.pop();
+                              GoRouter.of(
+                                context,
+                              ).pushReplacement(AppRoutes.loginScreen);
                             }
                           },
                           builder: (context, state) {
