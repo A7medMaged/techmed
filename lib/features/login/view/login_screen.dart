@@ -1,11 +1,15 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
+import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
+import 'package:techmed/features/login/logic/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,13 +104,35 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Column(
                     children: [
-                      PrimayButtonWidget(
-                        buttonText: 'Login',
-                        buttonColor: AppColors.primaryColor,
-                        onPress: () {
-                          if (formKey.currentState!.validate()) {
-                            // Perform login action
+                      BlocConsumer<LoginCubit, LoginState>(
+                        listener: (context, state) {
+                          if (state is LoginFailure) {
+                            showSnackBar(
+                              context,
+                              state.errorMessage,
+                              AnimatedSnackBarType.error,
+                            );
+                          } else if (state is LoginSuccess) {
+                            showSnackBar(
+                              context,
+                              state.message,
+                              AnimatedSnackBarType.success,
+                            );
+                            GoRouter.of(
+                              context,
+                            ).pushReplacement(AppRoutes.mainScreen);
                           }
+                        },
+                        builder: (context, state) {
+                          return PrimayButtonWidget(
+                            buttonText: 'Login',
+                            buttonColor: AppColors.primaryColor,
+                            onPress: () {
+                              if (formKey.currentState!.validate()) {
+                                // Perform login action
+                              }
+                            },
+                          );
                         },
                       ),
                       const HeightSpace(8),
