@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> waitAnimationAndNavigate() async {
     await Future.delayed(const Duration(seconds: 3));
     // ignore: use_build_context_synchronously
-    GoRouter.of(context).pushReplacement(AppRoutes.registerScreen);
+    GoRouter.of(context).pushReplacement(AppRoutes.loginScreen);
   }
 
   @override

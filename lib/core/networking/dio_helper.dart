@@ -14,7 +14,13 @@ class DioHelper {
       ),
     );
 
-    dio!.interceptors.add(PrettyDioLogger());
+    dio!.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
+    );
   }
 
   Future<Response> getRequest({

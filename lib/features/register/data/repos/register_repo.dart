@@ -9,23 +9,12 @@ class RegisterRepo {
   RegisterRepo(this._dioHelper);
 
   Future<Either<String, RegisterModel>> register(
-    String name,
-    String email,
-    String password,
-    String phoneNumber,
-    String nationalId,
-    String gender,
+    RegisterModel registerModel,
   ) async {
     try {
       final response = await _dioHelper.postRequest(
         endPoint: ApiEndpoints.register,
-        data: {
-          'name': name,
-          'email': email,
-          'password': password,
-          'phoneNumber': phoneNumber,
-          'nationalId': nationalId,
-        },
+        data: registerModel.toJson(),
       );
 
       if ((response.statusCode == 200 || response.statusCode == 201)) {
