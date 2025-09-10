@@ -3,21 +3,22 @@ import 'package:dio/dio.dart';
 import 'package:techmed/core/errors/failure.dart';
 import 'package:techmed/core/networking/api_endpoints.dart';
 import 'package:techmed/core/networking/dio_helper.dart';
-import 'package:techmed/features/register/data/models/register_model.dart';
+import 'package:techmed/features/register/data/models/register_request.dart';
+import 'package:techmed/features/register/data/models/register_response.dart';
 
 class RegisterRepo {
   final DioHelper _dioHelper;
   RegisterRepo(this._dioHelper);
 
-  Future<Either<String, RegisterModel>> register(
-    RegisterModel registerModel,
+  Future<Either<String, RegisterResponse>> register(
+    RegisterRequest request,
   ) async {
     try {
       final response = await _dioHelper.postRequest(
         endPoint: ApiEndpoints.register,
-        data: registerModel.toJson(),
+        data: request.toJson(),
       );
-      return Right(RegisterModel.fromJson(response.data));
+      return Right(RegisterResponse.fromJson(response.data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e) as String);

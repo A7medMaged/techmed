@@ -1,4 +1,4 @@
-class RegisterModel {
+class RegisterRequest {
   String? name;
   String? email;
   String? password;
@@ -6,7 +6,7 @@ class RegisterModel {
   String? nationalId;
   String? gender;
 
-  RegisterModel({
+  RegisterRequest({
     this.name,
     this.email,
     this.password,
@@ -15,14 +15,15 @@ class RegisterModel {
     this.gender,
   });
 
-  factory RegisterModel.fromJson(Map<String, dynamic> json) => RegisterModel(
-    name: json['name'] as String?,
-    email: json['email'] as String?,
-    password: json['password'] as String?,
-    phoneNumber: json['phoneNumber'] as String?,
-    nationalId: json['nationalId'] as String?,
-    gender: json['gender'] as String?,
-  );
+  factory RegisterRequest.fromJson(Map<String, dynamic> json) =>
+      RegisterRequest(
+        name: json['name'] as String?,
+        email: json['email'] as String?,
+        password: json['password'] as String?,
+        phoneNumber: json['phoneNumber'] as String?,
+        nationalId: json['nationalId'] as String?,
+        gender: json['gender'] as String?,
+      );
 
   Map<String, dynamic> toJson() => {
     'name': name,

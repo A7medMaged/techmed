@@ -9,7 +9,7 @@ import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
-import 'package:techmed/features/register/data/models/register_model.dart';
+import 'package:techmed/features/register/data/models/register_request.dart';
 import 'package:techmed/features/register/logic/cubit/register_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -241,8 +241,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               buttonColor: AppColors.primaryColor,
                               onPress: () {
                                 if (formKey.currentState!.validate()) {
-                                  final RegisterModel registerModel =
-                                      RegisterModel(
+                                  final RegisterRequest registerRequest =
+                                      RegisterRequest(
                                         name: fullNameController.text,
                                         email: emailController.text,
                                         password: passwordController.text,
@@ -252,7 +252,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       );
                                   BlocProvider.of<RegisterCubit>(
                                     context,
-                                  ).register(registerModel);
+                                  ).register(registerRequest);
                                 }
                               },
                             );
