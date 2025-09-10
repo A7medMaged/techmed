@@ -29,12 +29,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.blackColor,
-        body: Form(
-          key: formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),
+          child: Form(
+            key: formKey,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
