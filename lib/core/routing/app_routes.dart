@@ -8,4 +8,6 @@ class AppRoutes {
   static const String mainScreen = '/mainScreen';
 
   static const String addMedicationScreen = '/addMedicationScreen';
+
+  static const String addAppoinmentScreen = '/addAppoinmentScreen';
 }

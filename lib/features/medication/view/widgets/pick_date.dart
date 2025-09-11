@@ -3,7 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
 
 class PickDate extends StatefulWidget {
-  const PickDate({super.key});
+  const PickDate({super.key, this.hintText = 'Select Date'});
+  final String hintText;
 
   @override
   State<PickDate> createState() => _PickDateState();
@@ -17,7 +18,7 @@ class _PickDateState extends State<PickDate> {
     return CustomTextField(
       controller: _dateInput,
       width: double.infinity,
-      hintText: 'Select Start Date',
+      hintText: widget.hintText,
       suffixIcon: const Icon(Icons.calendar_today),
       isPassword: false,
       onTap: () async {

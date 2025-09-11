@@ -6,6 +6,7 @@ import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
+import 'package:techmed/features/appoinment/view/appoinment_screen.dart';
 import 'package:techmed/features/home/view/home_screen.dart';
 import 'package:techmed/features/medication/view/medication_screen.dart';
 
@@ -191,9 +192,7 @@ class MainScreenState extends State<MainScreen> {
   List<Widget> listOfWidgets = [
     const HomeScreen(),
     const MedicationScreen(),
-    const Center(
-      child: Text('Appointments Screen'),
-    ),
+    const AppoinmentScreen(),
     const Center(
       child: Text('Profile Screen'),
     ),

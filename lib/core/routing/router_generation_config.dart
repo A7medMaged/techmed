@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
+import 'package:techmed/features/appoinment/view/widgets/add_appointment_screen.dart';
 import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
 import 'package:techmed/features/auth/view/login_screen.dart';
 import 'package:techmed/features/main/view/main_screen.dart';
@@ -40,11 +41,15 @@ class RouterGenerationConfig {
         path: AppRoutes.mainScreen,
         builder: (context, state) => const MainScreen(),
       ),
-
       GoRoute(
         name: 'addMedicationScreen',
         path: AppRoutes.addMedicationScreen,
         builder: (context, state) => const AddMedicationScreen(),
+      ),
+      GoRoute(
+        name: 'addAppoinmentScreen',
+        path: AppRoutes.addAppoinmentScreen,
+        builder: (context, state) => const AddAppointmentScreen(),
       ),
     ],
   );

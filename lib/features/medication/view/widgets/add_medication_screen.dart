@@ -21,7 +21,7 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
   Widget build(BuildContext context) {
     return Hero(
       tag: 'addMedication',
-      
+
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -117,7 +117,9 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
                   ),
                 ),
                 const HeightSpace(8),
-                const PickDate(),
+                const PickDate(
+                  hintText: 'Select Start Date',
+                ),
                 const HeightSpace(24),
                 Text(
                   'End Date',
@@ -127,7 +129,9 @@ class _AddMedicationScreenState extends State<AddMedicationScreen> {
                   ),
                 ),
                 const HeightSpace(8),
-                const PickDate(),
+                const PickDate(
+                  hintText: 'Select End Date',
+                ),
                 const HeightSpace(24),
                 Text(
                   'Notes',
