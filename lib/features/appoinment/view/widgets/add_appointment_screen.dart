@@ -18,6 +18,8 @@ class AddAppointmentScreen extends StatefulWidget {
 class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
   String? _selectedDoctor;
   String? _selectedHospital;
+  final TextEditingController _statusController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -47,142 +49,146 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
               horizontal: 16,
               vertical: 12,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Status',
-                  style: AppStyles.subtitlesStyles.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                const HeightSpace(8),
-                const CustomTextField(
-                  width: double.infinity,
-                  hintText: 'Enter your status',
-                  keyboardType: TextInputType.text,
-                ),
-                const HeightSpace(16),
-                Text(
-                  'Date',
-                  style: AppStyles.subtitlesStyles.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                const HeightSpace(8),
-                const PickDate(
-                  hintText: 'Select appointment Date',
-                ),
-                const HeightSpace(24),
-                Text(
-                  'Time',
-                  style: AppStyles.subtitlesStyles.copyWith(
-                    fontSize: 20,
-                    color: Colors.white70,
-                  ),
-                ),
-                const HeightSpace(8),
-                const PickTime(),
-                const HeightSpace(24),
-                Text(
-                  'Doctor Name',
-                  style: AppStyles.subtitlesStyles.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                const HeightSpace(8),
-                DropdownButtonFormField<String>(
-                  dropdownColor: Colors.black,
-                  icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                  decoration: InputDecoration(
-                    fillColor: AppColors.blackColor,
-                    prefixIconColor: AppColors.primaryColor,
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Status',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please select doctor';
-                    }
-                    return null;
-                  },
-                  hint: Text(
-                    'Select Doctor',
-                    style: AppStyles.subtitlesStyles,
+                  const HeightSpace(8),
+                  CustomTextField(
+                    controller: _statusController,
+                    width: double.infinity,
+                    hintText: 'Enter your status',
+                    keyboardType: TextInputType.text,
                   ),
-                  initialValue: _selectedDoctor,
-                  items: ['Dr. Smith', 'Dr. Johnson', 'Dr. Brown']
-                      .map(
-                        (value) => DropdownMenuItem(
-                          value: value,
-                          child: Text(value),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) =>
-                      setState(() => _selectedDoctor = value!),
-                ),
-                const HeightSpace(24),
-                Text(
-                  'Hospital Name',
-                  style: AppStyles.subtitlesStyles.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                const HeightSpace(8),
-                DropdownButtonFormField<String>(
-                  dropdownColor: Colors.black,
-                  icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                  decoration: InputDecoration(
-                    fillColor: AppColors.blackColor,
-                    prefixIconColor: AppColors.primaryColor,
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                  const HeightSpace(16),
+                  Text(
+                    'Date',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please select hospital';
-                    }
-                    return null;
-                  },
-                  hint: Text(
-                    'Select Hospital',
-                    style: AppStyles.subtitlesStyles,
+                  const HeightSpace(8),
+                  const PickDate(
+                    hintText: 'Select appointment Date',
                   ),
-                  initialValue: _selectedHospital,
-                  items: ['Hospital A', 'Hospital B', 'Hospital C']
-                      .map(
-                        (value) => DropdownMenuItem(
-                          value: value,
-                          child: Text(value),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) =>
-                      setState(() => _selectedHospital = value!),
-                ),
-                const HeightSpace(32),
-                PrimayButtonWidget(
-                  buttonText: 'Add Appointment',
-                  onPress: () {},
-                  width: double.infinity,
-                  height: 56,
-                  bordersRadius: 12,
-                  fontSize: 22,
-                ),
-              ],
+                  const HeightSpace(24),
+                  Text(
+                    'Time',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 20,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  const HeightSpace(8),
+                  const PickTime(),
+                  const HeightSpace(24),
+                  Text(
+                    'Doctor Name',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const HeightSpace(8),
+                  DropdownButtonFormField<String>(
+                    dropdownColor: Colors.black,
+                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                    decoration: InputDecoration(
+                      fillColor: AppColors.blackColor,
+                      prefixIconColor: AppColors.primaryColor,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select doctor';
+                      }
+                      return null;
+                    },
+                    hint: Text(
+                      'Select Doctor',
+                      style: AppStyles.subtitlesStyles,
+                    ),
+                    initialValue: _selectedDoctor,
+                    items: ['Dr. Smith', 'Dr. Johnson', 'Dr. Brown']
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setState(() => _selectedDoctor = value!),
+                  ),
+                  const HeightSpace(24),
+                  Text(
+                    'Hospital Name',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const HeightSpace(8),
+                  DropdownButtonFormField<String>(
+                    dropdownColor: Colors.black,
+                    icon: const Icon(Icons.arrow_drop_down_circle_outlined),
+                    decoration: InputDecoration(
+                      fillColor: AppColors.blackColor,
+                      prefixIconColor: AppColors.primaryColor,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select hospital';
+                      }
+                      return null;
+                    },
+                    hint: Text(
+                      'Select Hospital',
+                      style: AppStyles.subtitlesStyles,
+                    ),
+                    initialValue: _selectedHospital,
+                    items: ['Hospital A', 'Hospital B', 'Hospital C']
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) =>
+                        setState(() => _selectedHospital = value!),
+                  ),
+                  const HeightSpace(32),
+                  PrimayButtonWidget(
+                    buttonText: 'Add Appointment',
+                    onPress: () {},
+                    width: double.infinity,
+                    height: 56,
+                    bordersRadius: 12,
+                    fontSize: 22,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
