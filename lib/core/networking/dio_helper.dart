@@ -54,4 +54,18 @@ class DioHelper {
       throw ServerFailure.fromDioException(e);
     }
   }
+
+  Future<Response> deleteRequest({
+    required String endPoint,
+  }) async {
+    try {
+      final Response response = await dio!.delete(
+        endPoint,
+      );
+
+      return response;
+    } on DioException catch (e) {
+      throw ServerFailure.fromDioException(e);
+    }
+  }
 }
