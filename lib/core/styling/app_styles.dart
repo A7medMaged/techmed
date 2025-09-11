@@ -38,6 +38,13 @@ class AppStyles {
     color: Colors.black,
   );
 
+  static TextStyle black13BoldStyle = TextStyle(
+    fontFamily: AppFonts.mainFontName,
+    fontSize: 13,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
   static TextStyle black18BoldStyle = TextStyle(
     fontFamily: AppFonts.mainFontName,
     fontSize: 18,

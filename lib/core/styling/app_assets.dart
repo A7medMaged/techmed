@@ -5,6 +5,10 @@ class AppAssets {
 
   static const String logo = '${imagesPath}logo.png';
 
+  static const String prescription = '${iconsPath}prescription.png';
+
+  static const String injection = '${iconsPath}injection.png';
+
   static const String box = '${iconsPath}Box.png';
 
   static const String filter = '${iconsPath}Filter.png';
