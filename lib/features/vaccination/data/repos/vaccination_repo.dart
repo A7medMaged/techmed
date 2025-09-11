@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:techmed/core/errors/failure.dart';
 import 'package:techmed/core/networking/api_endpoints.dart';
 import 'package:techmed/core/networking/dio_helper.dart';
+import 'package:techmed/features/vaccination/data/models/vaccination_details/vaccination_details.dart';
 import 'package:techmed/features/vaccination/data/models/vaccination_model/vaccination_model.dart';
 import 'package:techmed/features/vaccination/data/models/vaccination_request.dart';
 
@@ -42,12 +43,29 @@ class VaccinationRepo {
     }
   }
 
+  Future<Either<ServerFailure, VaccinationDetails>> getSingleVaccination(
+    int vaccinationId,
+  ) async {
+    try {
+      final response = await _dioHelper.getRequest(
+        endPoint: ApiEndpoints.getSingleVaccination(vaccinationId),
+      );
+      final vaccinationDetails = VaccinationDetails.fromJson(response.data);
+      return Right(vaccinationDetails);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(error: e.toString()));
+    }
+  }
+
   Future<Either<ServerFailure, dynamic>> deleteVaccination(
     int vaccinationId,
   ) async {
     try {
       final response = await _dioHelper.deleteRequest(
-        endPoint: ApiEndpoints.deleteVaccinationEndPoint(vaccinationId),
+        endPoint: ApiEndpoints.deleteVaccination(vaccinationId),
       );
       return Right(response.data);
     } catch (e) {

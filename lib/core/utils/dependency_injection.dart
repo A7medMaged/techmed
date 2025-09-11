@@ -6,6 +6,8 @@ import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
 import 'package:techmed/features/auth/data/repos/register_repo.dart';
 import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.dart';
 import 'package:techmed/features/translation/logic/cubit/local_cubit.dart';
+import 'package:techmed/features/vaccination/data/repos/vaccination_repo.dart';
+import 'package:techmed/features/vaccination/logic/cubit/vaccination_cubit.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -28,6 +30,10 @@ void setupDependencyInjection() {
     () => LoginRepo(getIt<DioHelper>()),
   );
 
+  getIt.registerLazySingleton(
+    () => VaccinationRepo(getIt<DioHelper>()),
+  );
+
   // Cubits
   getIt.registerFactory(
     () => RegisterCubit(getIt<RegisterRepo>()),
@@ -37,5 +43,11 @@ void setupDependencyInjection() {
     () => LoginCubit(getIt<LoginRepo>()),
   );
 
-  getIt.registerFactory<LocaleCubit>(() => LocaleCubit());
+  getIt.registerFactory<LocaleCubit>(
+    () => LocaleCubit(),
+  );
+
+  getIt.registerFactory(
+    () => VaccinationCubit(getIt<VaccinationRepo>()),
+  );
 }
