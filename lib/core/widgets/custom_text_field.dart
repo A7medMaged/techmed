@@ -9,6 +9,10 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final Function()? onTap;
+  final bool enable;
+  final int maxLines;
   const CustomTextField({
     super.key,
     this.hintText,
@@ -18,6 +22,10 @@ class CustomTextField extends StatelessWidget {
     this.isPassword,
     this.controller,
     this.validator,
+    this.keyboardType,
+    this.onTap,
+    this.enable = true,
+    this.maxLines = 1,
   });
 
   @override
@@ -25,6 +33,10 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 331,
       child: TextFormField(
+        maxLines: maxLines,
+        enabled: enable,
+        onTap: onTap,
+        keyboardType: keyboardType,
         controller: controller,
         validator: validator,
         obscureText: isPassword ?? false,

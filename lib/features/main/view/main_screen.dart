@@ -7,6 +7,7 @@ import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/features/home/view/home_screen.dart';
+import 'package:techmed/features/medication/view/medication_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -189,9 +190,7 @@ class MainScreenState extends State<MainScreen> {
 
   List<Widget> listOfWidgets = [
     const HomeScreen(),
-    const Center(
-      child: Text('Medication Screen'),
-    ),
+    const MedicationScreen(),
     const Center(
       child: Text('Appointments Screen'),
     ),
