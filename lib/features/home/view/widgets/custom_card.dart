@@ -22,36 +22,39 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        color: AppColors.primaryColor,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                image.assetName,
-                width: 50,
-                height: 50,
-                color: AppColors.whiteColor,
-              ),
-              const HeightSpace(12),
-              Text(
-                title,
-                style: AppStyles.subtitlesStyles.copyWith(
+      child: SizedBox(
+        width: 180,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          color: AppColors.primaryColor,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  image.assetName,
+                  width: 50,
+                  height: 50,
                   color: AppColors.whiteColor,
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                'View and manage your $subTitle',
-                style: AppStyles.grey12MediumStyle,
-              ),
-            ],
+                const HeightSpace(12),
+                Text(
+                  title,
+                  style: AppStyles.subtitlesStyles.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  'View and manage your $subTitle',
+                  style: AppStyles.grey12MediumStyle,
+                ),
+              ],
+            ),
           ),
         ),
       ),

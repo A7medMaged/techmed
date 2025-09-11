@@ -10,6 +10,8 @@ import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.
 import 'package:techmed/features/auth/view/register_screen.dart';
 import 'package:techmed/features/medication/view/widgets/add_medication_screen.dart';
 import 'package:techmed/features/splash_screen/splash_screen.dart';
+import 'package:techmed/features/vaccination/view/vaccination_screen.dart';
+import 'package:techmed/features/vaccination/view/widgets/add_vaccination_screen.dart';
 
 class RouterGenerationConfig {
   static GoRouter goRouter = GoRouter(
@@ -50,6 +52,16 @@ class RouterGenerationConfig {
         name: 'addAppoinmentScreen',
         path: AppRoutes.addAppoinmentScreen,
         builder: (context, state) => const AddAppointmentScreen(),
+      ),
+      GoRoute(
+        name: 'vaccinationScreen',
+        path: AppRoutes.vaccinationScreen,
+        builder: (context, state) => const VaccinationScreen(),
+      ),
+      GoRoute(
+        name: 'addVaccinationScreen',
+        path: AppRoutes.addVaccinationScreen,
+        builder: (context, state) => const AddVaccinationScreen(),
       ),
     ],
   );

@@ -10,4 +10,8 @@ class AppRoutes {
   static const String addMedicationScreen = '/addMedicationScreen';
 
   static const String addAppoinmentScreen = '/addAppoinmentScreen';
+
+  static const String addVaccinationScreen = '/addVaccinationScreen';
+
+  static const String vaccinationScreen = '/vaccinationScreen';
 }

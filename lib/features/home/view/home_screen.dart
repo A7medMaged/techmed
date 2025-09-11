@@ -1,5 +1,7 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/styling/app_assets.dart';
 import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/animated_snack_bar.dart';
@@ -18,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,19 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                 ),
-                const WidthSpace(12),
+                const WidthSpace(8),
                 CustomCard(
                   image: const AssetImage(AppAssets.injection),
                   title: 'Vaccinations',
                   subTitle: 'vaccinations',
                   onTap: () {
-                    setState(() {
-                      showSnackBar(
-                        context,
-                        'Tapped',
-                        AnimatedSnackBarType.warning,
-                      );
-                    });
+                    context.push(AppRoutes.vaccinationScreen);
                   },
                 ),
               ],
