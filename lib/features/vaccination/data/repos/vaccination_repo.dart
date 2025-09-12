@@ -26,7 +26,7 @@ class VaccinationRepo {
     }
   }
 
-  Future<Either<ServerFailure, dynamic>> addVaccination(
+  Future<Either<Failures, dynamic>> addVaccination(
     VaccinationRequest vaccinationRequest,
   ) async {
     try {
@@ -43,7 +43,7 @@ class VaccinationRepo {
     }
   }
 
-  Future<Either<ServerFailure, VaccinationDetails>> getSingleVaccination(
+  Future<Either<Failures, VaccinationDetails>> getSingleVaccination(
     int vaccinationId,
   ) async {
     try {
@@ -60,7 +60,7 @@ class VaccinationRepo {
     }
   }
 
-  Future<Either<ServerFailure, dynamic>> deleteVaccination(
+  Future<Either<Failures, dynamic>> deleteVaccination(
     int vaccinationId,
   ) async {
     try {

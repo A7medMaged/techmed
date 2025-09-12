@@ -10,8 +10,10 @@ import 'package:techmed/features/auth/logic/register_cubit/cubit/register_cubit.
 import 'package:techmed/features/auth/view/register_screen.dart';
 import 'package:techmed/features/medication/view/widgets/add_medication_screen.dart';
 import 'package:techmed/features/splash_screen/splash_screen.dart';
+import 'package:techmed/features/vaccination/logic/cubit/vaccination_cubit.dart';
+import 'package:techmed/features/vaccination/view/vaccination_details_screen.dart';
 import 'package:techmed/features/vaccination/view/vaccination_screen.dart';
-import 'package:techmed/features/vaccination/view/widgets/add_vaccination_screen.dart';
+import 'package:techmed/features/vaccination/view/add_vaccination_screen.dart';
 
 class RouterGenerationConfig {
   static GoRouter goRouter = GoRouter(
@@ -56,12 +58,23 @@ class RouterGenerationConfig {
       GoRoute(
         name: 'vaccinationScreen',
         path: AppRoutes.vaccinationScreen,
-        builder: (context, state) => const VaccinationScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<VaccinationCubit>()..getVaccinations(),
+          child: const VaccinationScreen(),
+        ),
       ),
       GoRoute(
         name: 'addVaccinationScreen',
         path: AppRoutes.addVaccinationScreen,
-        builder: (context, state) => const AddVaccinationScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<VaccinationCubit>(),
+          child: const AddVaccinationScreen(),
+        ),
+      ),
+      GoRoute(
+        name: 'vaccinationDetailsScreen',
+        path: AppRoutes.vaccinationDetailsScreen,
+        builder: (context, state) => const VaccinationDetailsScreen(),
       ),
     ],
   );

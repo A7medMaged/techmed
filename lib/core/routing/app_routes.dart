@@ -14,4 +14,6 @@ class AppRoutes {
   static const String addVaccinationScreen = '/addVaccinationScreen';
 
   static const String vaccinationScreen = '/vaccinationScreen';
+
+  static const String vaccinationDetailsScreen = '/vaccinationDetailsScreen';
 }

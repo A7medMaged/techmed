@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:techmed/core/errors/failure.dart';
 import 'package:techmed/core/networking/api_endpoints.dart';
+import 'package:techmed/core/utils/dependency_injection.dart';
+import 'package:techmed/core/utils/storage_helper.dart';
 
 class DioHelper {
   Dio? dio;
@@ -27,45 +28,54 @@ class DioHelper {
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    try {
-      final Response response = await dio!.get(
-        endPoint,
-        queryParameters: query,
-      );
+    final String? token = await getIt<StorageHelper>().getUserToken();
+    final Response response = await dio!.get(
+      endPoint,
+      queryParameters: query,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
 
-      return response;
-    } on DioException catch (e) {
-      throw ServerFailure.fromDioException(e);
-    }
+    return response;
   }
 
   Future<Response> postRequest({
     required String endPoint,
     Map<String, dynamic>? data,
   }) async {
-    try {
-      final Response response = await dio!.post(
-        endPoint,
-        data: data,
-      );
+    final String? token = await getIt<StorageHelper>().getUserToken();
+    final Response response = await dio!.post(
+      endPoint,
+      data: data,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
 
-      return response;
-    } on DioException catch (e) {
-      throw ServerFailure.fromDioException(e);
-    }
+    return response;
   }
 
   Future<Response> deleteRequest({
     required String endPoint,
   }) async {
-    try {
-      final Response response = await dio!.delete(
-        endPoint,
-      );
+    final String? token = await getIt<StorageHelper>().getUserToken();
+    final Response response = await dio!.delete(
+      endPoint,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
 
-      return response;
-    } on DioException catch (e) {
-      throw ServerFailure.fromDioException(e);
-    }
+    return response;
   }
 }

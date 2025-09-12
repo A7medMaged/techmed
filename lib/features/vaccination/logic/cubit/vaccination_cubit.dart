@@ -12,11 +12,15 @@ class VaccinationCubit extends Cubit<VaccinationState> {
 
   Future<void> getVaccinations() async {
     emit(VaccinationLoading());
-    final result = await _vaccinationRepo.getVaccination();
-    result.fold(
-      (l) => emit(VaccinationError(l.error)),
-      (r) => emit(VaccinationSuccess(r)),
-    );
+    try {
+      final result = await _vaccinationRepo.getVaccination();
+      result.fold(
+        (failure) => emit(VaccinationError(failure.error)),
+        (vaccinations) => emit(VaccinationSuccess(vaccinations)),
+      );
+    } catch (e) {
+      emit(VaccinationError('Failed to load vaccinations: ${e.toString()}'));
+    }
   }
 
   Future<void> addVaccination(
