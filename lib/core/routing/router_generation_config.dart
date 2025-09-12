@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:techmed/core/routing/app_routes.dart';
@@ -74,7 +75,28 @@ class RouterGenerationConfig {
       GoRoute(
         name: 'vaccinationDetailsScreen',
         path: AppRoutes.vaccinationDetailsScreen,
-        builder: (context, state) => const VaccinationDetailsScreen(),
+        builder: (context, state) {
+          final vaccinationId = state.extra as int?;
+          if (vaccinationId == null) {
+            // If no vaccination ID is provided, return an error screen or navigate back
+            return Scaffold(
+              appBar: AppBar(title: const Text('Error')),
+              body: const Center(
+                child: Text('Vaccination ID not provided'),
+              ),
+            );
+          }
+          return BlocProvider(
+            create: (context) {
+              final cubit = getIt<VaccinationCubit>();
+              cubit.getSingleVaccination(vaccinationId);
+              return cubit;
+            },
+            child: VaccinationDetailsScreen(
+              vaccinationId: vaccinationId,
+            ),
+          );
+        },
       ),
     ],
   );
