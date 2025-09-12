@@ -151,7 +151,12 @@ class _AddVaccinationScreenState extends State<AddVaccinationScreen> {
                     },
                     builder: (context, state) {
                       if (state is CreateVaccinationLoading) {
-                        return const CircularProgressIndicator();
+                        return PrimayButtonWidget(
+                          width: double.infinity,
+                          buttonText: '',
+                          isLoading: true,
+                          onPress: () {},
+                        );
                       }
                       return PrimayButtonWidget(
                         width: double.infinity,

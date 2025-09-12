@@ -69,7 +69,7 @@ class _VaccinationScreenState extends State<VaccinationScreen> {
                         return Center(
                           child: Text(
                             "No vaccinations found",
-                            style: AppStyles.black15BoldStyle,
+                            style: AppStyles.primaryHeadLinesStyle,
                           ),
                         );
                       }
@@ -142,7 +142,7 @@ class _VaccinationScreenState extends State<VaccinationScreen> {
           heroTag: 'addVaccination',
           onPressed: () {
             context.push(AppRoutes.addVaccinationScreen).then((value) {
-              if (value == true && mounted) {
+              if (value == true) {
                 // ignore: use_build_context_synchronously
                 BlocProvider.of<VaccinationCubit>(context).getVaccinations();
               }

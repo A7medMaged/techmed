@@ -1,7 +1,10 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
+import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/loading.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 import 'package:techmed/features/vaccination/logic/cubit/vaccination_cubit.dart';
@@ -142,26 +145,59 @@ class _VaccinationDetailsScreenState extends State<VaccinationDetailsScreen> {
       ),
       floatingActionButton: SizedBox(
         width: 130,
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.red,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
-              const WidthSpace(8),
-              Text(
-                'Delete',
-                style: AppStyles.subtitlesStyles.copyWith(
-                  fontSize: 16,
-                  color: AppColors.whiteColor,
+        child: BlocConsumer<VaccinationCubit, VaccinationState>(
+          listener: (context, state) {
+            if (state is DeleteVaccinationSucecss) {
+              showSnackBar(
+                context,
+                'Deleted Successfully',
+                AnimatedSnackBarType.success,
+              );
+              context.pop(true);
+            } else if (state is DeleteVaccinationError) {
+              showSnackBar(
+                context,
+                state.errorMessage,
+                AnimatedSnackBarType.error,
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is DeleteVaccinationLoading) {
+              return FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.grey,
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
                 ),
+              );
+            }
+            return FloatingActionButton(
+              onPressed: () {
+                context.read<VaccinationCubit>().deleteVaccination(
+                  widget.vaccinationId,
+                );
+              },
+              backgroundColor: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                  const WidthSpace(8),
+                  Text(
+                    'Delete',
+                    style: AppStyles.subtitlesStyles.copyWith(
+                      fontSize: 16,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
