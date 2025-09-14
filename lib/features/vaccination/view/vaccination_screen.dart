@@ -20,7 +20,7 @@ class _VaccinationScreenState extends State<VaccinationScreen> {
   void initState() {
     super.initState();
     // Load vaccinations when screen loads
-    context.read<VaccinationCubit>().getVaccinations();
+    BlocProvider.of<VaccinationCubit>(context).getVaccinations();
   }
 
   @override
@@ -111,9 +111,9 @@ class _VaccinationScreenState extends State<VaccinationScreen> {
                             const SizedBox(height: 16),
                             ElevatedButton(
                               onPressed: () {
-                                context
-                                    .read<VaccinationCubit>()
-                                    .getVaccinations();
+                                BlocProvider.of<VaccinationCubit>(
+                                  context,
+                                ).getVaccinations();
                               },
                               child: const Text('Retry'),
                             ),

@@ -17,8 +17,8 @@ class VaccinationCubit extends Cubit<VaccinationState> {
       final result = await _vaccinationRepo.getVaccination();
       if (isClosed) return;
       result.fold(
-        (failure) => emit(VaccinationError(failure.error)),
-        (vaccinations) => emit(VaccinationSuccess(vaccinations)),
+        (l) => emit(VaccinationError(l.error)),
+        (r) => emit(VaccinationSuccess(r)),
       );
     } catch (e) {
       if (isClosed) return;

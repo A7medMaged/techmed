@@ -2,10 +2,12 @@ import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:techmed/core/networking/dio_factory.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/animated_snack_bar.dart';
+import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
@@ -119,6 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               AnimatedSnackBarType.error,
                             );
                           } else if (state is LoginSuccess) {
+                            DioFactory.setTokenIntoHeaderAfterLogin(
+                              state.response.data!.token!,
+                            );
                             getIt<StorageHelper>().saveUserToken(
                               state.response.data!.token!,
                             );
