@@ -1,5 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:techmed/core/networking/dio_helper.dart';
+import 'package:techmed/core/networking/dio_factory.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/features/auth/data/repos/login_repo.dart';
 import 'package:techmed/features/auth/logic/login_cubit/cubit/login_cubit.dart';
@@ -12,26 +13,23 @@ import 'package:techmed/features/vaccination/logic/cubit/vaccination_cubit.dart'
 GetIt getIt = GetIt.instance;
 
 void setupDependencyInjection() {
-  final DioHelper diohelper = DioHelper();
-  final StorageHelper storageHelper = StorageHelper();
-
   //  Dio
-  getIt.registerLazySingleton<DioHelper>(() => diohelper);
+  getIt.registerLazySingleton<Dio>(() => DioFactory.getDio());
 
   // Storage
-  getIt.registerLazySingleton<StorageHelper>(() => storageHelper);
+  getIt.registerLazySingleton<StorageHelper>(() => StorageHelper());
 
   // Reops
   getIt.registerLazySingleton(
-    () => RegisterRepo(getIt<DioHelper>()),
+    () => RegisterRepo(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton(
-    () => LoginRepo(getIt<DioHelper>()),
+    () => LoginRepo(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton(
-    () => VaccinationRepo(getIt<DioHelper>()),
+    () => VaccinationRepo(getIt<Dio>()),
   );
 
   // Cubits

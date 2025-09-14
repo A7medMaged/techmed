@@ -2,20 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:techmed/core/errors/failure.dart';
 import 'package:techmed/core/networking/api_endpoints.dart';
-import 'package:techmed/core/networking/dio_helper.dart';
 import 'package:techmed/features/auth/data/models/register_models/register_request.dart';
 import 'package:techmed/features/auth/data/models/register_models/register_response.dart';
 
 class RegisterRepo {
-  final DioHelper _dioHelper;
-  RegisterRepo(this._dioHelper);
+  final Dio dio;
+  RegisterRepo(this.dio);
 
   Future<Either<ServerFailure, RegisterResponse>> register(
     RegisterRequest request,
   ) async {
     try {
-      final response = await _dioHelper.postRequest(
-        endPoint: ApiEndpoints.register,
+      final response = await dio.post(
+        ApiEndpoints.register,
         data: request.toJson(),
       );
       return Right(RegisterResponse.fromJson(response.data));

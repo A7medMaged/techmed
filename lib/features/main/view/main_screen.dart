@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:techmed/core/networking/dio_factory.dart';
 import 'package:techmed/core/routing/app_routes.dart';
 import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
@@ -56,6 +57,7 @@ class MainScreenState extends State<MainScreen> {
             ),
             onPressed: () {
               getIt<StorageHelper>().deleteUserToken();
+              DioFactory.removeDioHeaders();
               context.pushReplacement(AppRoutes.loginScreen);
             },
           ),
