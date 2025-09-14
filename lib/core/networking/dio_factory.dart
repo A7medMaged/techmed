@@ -29,9 +29,10 @@ class DioFactory {
   }
 
   static void addDioHeaders() async {
+    final token = await getIt<StorageHelper>().getUserToken();
     dio?.options.headers = {
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${await getIt<StorageHelper>().getUserToken()}',
+      'Authorization': 'Bearer $token',
     };
   }
 
