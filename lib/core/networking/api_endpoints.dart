@@ -7,8 +7,13 @@ class ApiEndpoints {
 
   static const String vaccinations = '$baseUrl/vaccination';
 
-  static String getSingleVaccination(int id) =>
-      "$baseUrl/vaccination/$id";
+  static String getSingleVaccination(int id) => "$baseUrl/vaccination/$id";
 
   static String deleteVaccination(int id) => "$baseUrl/vaccination/$id";
+
+  static const String medications = '$baseUrl/medications';
+
+  static String getSingleMedication(int id) => "$baseUrl/medications/$id";
+
+  static String deleteMedication(int id) => "$baseUrl/medications/$id";
 }
