@@ -25,7 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       " هل لديك حساب؟ تسجيل الدخول",
     ),
-    "appTitle": MessageLookupByLibrary.simpleMessage("تطبيق تك ميد"),
+    "appTitle1": MessageLookupByLibrary.simpleMessage("تك"),
+    "appTitle2": MessageLookupByLibrary.simpleMessage("ميد"),
+    "appointments": MessageLookupByLibrary.simpleMessage("المواعيد"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "changePassword": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم تسجيل الخروج بنجاح",
     ),
     "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "medication": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "password_changed_successfully": MessageLookupByLibrary.simpleMessage(
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_fill_the_input_below_here": MessageLookupByLibrary.simpleMessage(
       "يرجى ملء الإدخال أدناه هنا",
     ),
+    "prescriptions": MessageLookupByLibrary.simpleMessage("الوصفات الطبية"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "profile_updated_successfully": MessageLookupByLibrary.simpleMessage(
       "تم تحديث الملف الشخصي بنجاح",
@@ -111,7 +115,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "system": MessageLookupByLibrary.simpleMessage("النظام"),
     "theme": MessageLookupByLibrary.simpleMessage("السمة"),
     "title": MessageLookupByLibrary.simpleMessage("تك ميد"),
+    "today_medications": MessageLookupByLibrary.simpleMessage(":أدوية اليوم"),
     "update": MessageLookupByLibrary.simpleMessage("تحديث"),
+    "vaccination": MessageLookupByLibrary.simpleMessage("التطعيم"),
+    "view_and_manage_your_medications": MessageLookupByLibrary.simpleMessage(
+      "عرض وإدارة أدويتك",
+    ),
+    "view_and_manage_your_vaccination": MessageLookupByLibrary.simpleMessage(
+      "عرض وإدارة وصفاتك الطبية",
+    ),
     "weak_password": MessageLookupByLibrary.simpleMessage("كلمة مرور ضعيفة"),
     "wlecome_back_to_TecMed": MessageLookupByLibrary.simpleMessage(
       "مرحبًا بعودتك إلى تك ميد",

@@ -7,6 +7,7 @@ import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/widgets/spacing_widgets.dart';
 import 'package:techmed/features/home/view/widgets/custom_card.dart';
+import 'package:techmed/generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 CustomCard(
                   image: const AssetImage(AppAssets.prescription),
-                  title: 'Prescriptions',
-                  subTitle: 'Medications',
+                  title: S.of(context).prescriptions,
+                  subTitle: S.of(context).view_and_manage_your_medications,
                   onTap: () {
                     setState(() {
                       showSnackBar(
@@ -44,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const WidthSpace(8),
                 CustomCard(
                   image: const AssetImage(AppAssets.injection),
-                  title: 'Vaccinations',
-                  subTitle: 'vaccinations',
+                  title: S.of(context).vaccination,
+                  subTitle: S.of(context).view_and_manage_your_vaccination,
                   onTap: () {
                     context.push(AppRoutes.vaccinationScreen);
                   },
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const HeightSpace(32),
             Text(
-              'Today\'s Medications',
+              S.of(context).today_medications,
               style: AppStyles.subtitlesStyles.copyWith(
                 color: Colors.white,
                 fontSize: 24,

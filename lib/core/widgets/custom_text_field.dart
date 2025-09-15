@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techmed/core/styling/app_colors.dart';
+import 'package:techmed/core/styling/app_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final String? hintText;
@@ -33,6 +34,10 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 331,
       child: TextFormField(
+        style: AppStyles.grey12MediumStyle.copyWith(
+          color: AppColors.whiteColor,
+          fontSize: 16,
+        ),
         maxLines: maxLines,
         enabled: enable,
         onTap: onTap,
@@ -40,12 +45,13 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         validator: validator,
         obscureText: isPassword ?? false,
+        obscuringCharacter: '#',
         cursorColor: AppColors.primaryColor,
         decoration: InputDecoration(
           hintText: hintText ?? "",
           hintStyle: const TextStyle(
-            fontSize: 15,
-            color: Color(0xff8391A1),
+            fontSize: 16,
+            color: Colors.white,
             fontWeight: FontWeight.w500,
           ),
           contentPadding: const EdgeInsets.symmetric(
@@ -69,9 +75,11 @@ class CustomTextField extends StatelessWidget {
             borderSide: const BorderSide(color: Colors.red),
           ),
           filled: true,
-          fillColor: const Color(0xffF7F8F9),
+          fillColor: Colors.black87,
           suffixIcon: suffixIcon,
           prefixIcon: preffixIcon,
+          prefixIconColor: AppColors.primaryColor,
+          suffixIconColor: AppColors.primaryColor,
         ),
       ),
     );

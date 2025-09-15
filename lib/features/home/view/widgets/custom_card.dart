@@ -50,7 +50,7 @@ class CustomCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0),
                 Text(
-                  'View and manage your $subTitle',
+                  subTitle,
                   style: AppStyles.grey12MediumStyle,
                 ),
               ],

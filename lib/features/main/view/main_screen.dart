@@ -7,9 +7,11 @@ import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
+import 'package:techmed/core/widgets/language_switcher.dart';
 import 'package:techmed/features/appoinment/view/appoinment_screen.dart';
 import 'package:techmed/features/home/view/home_screen.dart';
 import 'package:techmed/features/medication/view/medication_screen.dart';
+import 'package:techmed/generated/l10n.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -26,24 +28,25 @@ class MainScreenState extends State<MainScreen> {
     final double displayWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text.rich(
+        title: Text.rich(
           TextSpan(
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
             children: [
               TextSpan(
-                text: 'TECH',
-                style: TextStyle(
-                  color: Colors.white,
+                text: S.of(context).appTitle1,
+                style: AppStyles.primaryHeadLinesStyle.copyWith(
+                  color: AppColors.whiteColor,
                 ),
               ),
+              const TextSpan(
+                text: ' ',
+              ),
               TextSpan(
-                text: 'MED',
-                style: TextStyle(
-                  color: Colors.blueAccent,
-                ),
+                text: S.of(context).appTitle2,
+                style: AppStyles.primaryHeadLinesStyle,
               ),
             ],
           ),
@@ -51,15 +54,69 @@ class MainScreenState extends State<MainScreen> {
         centerTitle: true,
         actions: [
           IconButton(
+            tooltip: 'Logout',
             icon: const Icon(
               Icons.logout,
               color: Colors.red,
             ),
-            onPressed: () {
-              getIt<StorageHelper>().deleteUserToken();
+            onPressed: () async {
+              final shouldLogout = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Logout'),
+                  content: const Text('Are you sure you want to logout?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: const Text('Logout'),
+                    ),
+                  ],
+                ),
+              );
+
+              if (shouldLogout != true) return;
+              showDialog(
+                // ignore: use_build_context_synchronously
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+              await getIt<StorageHelper>().deleteUserToken();
               DioFactory.removeDioHeaders();
+              // ignore: use_build_context_synchronously
               context.pushReplacement(AppRoutes.loginScreen);
             },
+          ),
+          IconButton(
+            tooltip: 'Change language',
+            onPressed: () {
+              showDialog(
+                barrierDismissible: false,
+                fullscreenDialog: true,
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Language'),
+                  content: const LanguageSwitcher(
+                    color: Colors.black,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.translate_sharp,
+            ),
           ),
         ],
       ),
@@ -184,11 +241,11 @@ class MainScreenState extends State<MainScreen> {
     Icons.person_rounded,
   ];
 
-  List<String> listOfStrings = [
-    'Home',
-    'Medication',
-    'Appointments',
-    'Profile',
+  List<String> get listOfStrings => [
+    S.of(context).home,
+    S.of(context).medication,
+    S.of(context).appointments,
+    S.of(context).profile,
   ];
 
   List<Widget> listOfWidgets = [

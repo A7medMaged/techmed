@@ -25,7 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? login",
     ),
-    "appTitle": MessageLookupByLibrary.simpleMessage("TecMed App"),
+    "appTitle1": MessageLookupByLibrary.simpleMessage("TEC"),
+    "appTitle2": MessageLookupByLibrary.simpleMessage("MED"),
+    "appointments": MessageLookupByLibrary.simpleMessage("Appointments"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Logout successful",
     ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
+    "medication": MessageLookupByLibrary.simpleMessage("Medication"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "password_changed_successfully": MessageLookupByLibrary.simpleMessage(
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "please_fill_the_input_below_here": MessageLookupByLibrary.simpleMessage(
       "please fill the input below here",
     ),
+    "prescriptions": MessageLookupByLibrary.simpleMessage("Prescriptions"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "profile_updated_successfully": MessageLookupByLibrary.simpleMessage(
       "Profile updated successfully",
@@ -115,8 +119,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "system": MessageLookupByLibrary.simpleMessage("System"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "title": MessageLookupByLibrary.simpleMessage("TecMed"),
+    "today_medications": MessageLookupByLibrary.simpleMessage(
+      "Today\'s Medications:",
+    ),
     "update": MessageLookupByLibrary.simpleMessage("Update"),
     "user_not_found": MessageLookupByLibrary.simpleMessage("User not found"),
+    "vaccination": MessageLookupByLibrary.simpleMessage("Vaccination"),
+    "view_and_manage_your_medications": MessageLookupByLibrary.simpleMessage(
+      "View and manage your medications",
+    ),
+    "view_and_manage_your_vaccination": MessageLookupByLibrary.simpleMessage(
+      "View and manage your prescriptions",
+    ),
     "weak_password": MessageLookupByLibrary.simpleMessage("Weak password"),
     "wlecome_back_to_TecMed": MessageLookupByLibrary.simpleMessage(
       "Wlecome back to TecMed",

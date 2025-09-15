@@ -8,7 +8,6 @@ import 'package:techmed/core/styling/app_colors.dart';
 import 'package:techmed/core/styling/app_styles.dart';
 import 'package:techmed/core/utils/animated_snack_bar.dart';
 import 'package:techmed/core/utils/dependency_injection.dart';
-import 'package:techmed/core/utils/dependency_injection.dart';
 import 'package:techmed/core/utils/storage_helper.dart';
 import 'package:techmed/core/widgets/custom_button.dart';
 import 'package:techmed/core/widgets/custom_text_field.dart';
@@ -45,7 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const HeightSpace(32),
-                const LanguageSwitcher(),
+                const LanguageSwitcher(
+                  color: Colors.white,
+                ),
                 Text(
                   S.of(context).wlecome_back_to_TecMed,
                   style: AppStyles.primaryHeadLinesStyle,

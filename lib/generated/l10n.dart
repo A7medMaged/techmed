@@ -59,9 +59,14 @@ class S {
     return Intl.message('TecMed', name: 'title', desc: '', args: []);
   }
 
-  /// `TecMed App`
-  String get appTitle {
-    return Intl.message('TecMed App', name: 'appTitle', desc: '', args: []);
+  /// `TEC`
+  String get appTitle1 {
+    return Intl.message('TEC', name: 'appTitle1', desc: '', args: []);
+  }
+
+  /// `MED`
+  String get appTitle2 {
+    return Intl.message('MED', name: 'appTitle2', desc: '', args: []);
   }
 
   /// `register`
@@ -142,6 +147,66 @@ class S {
   /// `Home`
   String get home {
     return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Medication`
+  String get medication {
+    return Intl.message('Medication', name: 'medication', desc: '', args: []);
+  }
+
+  /// `Appointments`
+  String get appointments {
+    return Intl.message(
+      'Appointments',
+      name: 'appointments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vaccination`
+  String get vaccination {
+    return Intl.message('Vaccination', name: 'vaccination', desc: '', args: []);
+  }
+
+  /// `Prescriptions`
+  String get prescriptions {
+    return Intl.message(
+      'Prescriptions',
+      name: 'prescriptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View and manage your prescriptions`
+  String get view_and_manage_your_vaccination {
+    return Intl.message(
+      'View and manage your prescriptions',
+      name: 'view_and_manage_your_vaccination',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View and manage your medications`
+  String get view_and_manage_your_medications {
+    return Intl.message(
+      'View and manage your medications',
+      name: 'view_and_manage_your_medications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today's Medications:`
+  String get today_medications {
+    return Intl.message(
+      'Today\'s Medications:',
+      name: 'today_medications',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Settings`
